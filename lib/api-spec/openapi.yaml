@@ -1,0 +1,474 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.2.0
+  description: CampusConnect API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: connections
+    description: Student connections and networking
+  - name: placements
+    description: Placement and career updates
+  - name: feed
+    description: Campus feed posts, events, projects
+  - name: profiles
+    description: Student profiles
+
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /connections:
+    get:
+      operationId: listConnections
+      tags: [connections]
+      summary: List student connections
+      responses:
+        "200":
+          description: List of connections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Connection"
+
+  /connections/suggested:
+    get:
+      operationId: listSuggestedConnections
+      tags: [connections]
+      summary: AI-suggested connections based on shared interests
+      responses:
+        "200":
+          description: Suggested connections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SuggestedConnection"
+
+  /connections/stats:
+    get:
+      operationId: getConnectionStats
+      tags: [connections]
+      summary: Campus connection statistics
+      responses:
+        "200":
+          description: Stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectionStats"
+
+  /profiles:
+    get:
+      operationId: listProfiles
+      tags: [profiles]
+      summary: List student profiles
+      responses:
+        "200":
+          description: Student profiles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Profile"
+
+  /placements:
+    get:
+      operationId: listPlacements
+      tags: [placements]
+      summary: List placement updates
+      responses:
+        "200":
+          description: Placement updates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Placement"
+
+  /placements/stats:
+    get:
+      operationId: getPlacementStats
+      tags: [placements]
+      summary: Placement statistics and aggregates
+      responses:
+        "200":
+          description: Placement stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlacementStats"
+
+  /feed/posts:
+    get:
+      operationId: listFeedPosts
+      tags: [feed]
+      summary: List campus feed posts
+      responses:
+        "200":
+          description: Feed posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FeedPost"
+
+  /feed/events:
+    get:
+      operationId: listEvents
+      tags: [feed]
+      summary: List campus events
+      responses:
+        "200":
+          description: Events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Event"
+
+  /feed/projects:
+    get:
+      operationId: listProjects
+      tags: [feed]
+      summary: List collaboration projects
+      responses:
+        "200":
+          description: Projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    Connection:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        university:
+          type: string
+        major:
+          type: string
+        year:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        avatarInitials:
+          type: string
+        mutualConnections:
+          type: integer
+        connectedSince:
+          type: string
+      required:
+        - id
+        - name
+        - university
+        - major
+        - year
+        - skills
+        - avatarInitials
+        - mutualConnections
+        - connectedSince
+
+    SuggestedConnection:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        university:
+          type: string
+        major:
+          type: string
+        year:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        avatarInitials:
+          type: string
+        matchScore:
+          type: integer
+        matchReasons:
+          type: array
+          items:
+            type: string
+        mutualConnections:
+          type: integer
+      required:
+        - id
+        - name
+        - university
+        - major
+        - year
+        - skills
+        - avatarInitials
+        - matchScore
+        - matchReasons
+        - mutualConnections
+
+    ConnectionStats:
+      type: object
+      properties:
+        totalStudents:
+          type: integer
+        totalConnections:
+          type: integer
+        campusesConnected:
+          type: integer
+        dailyNewConnections:
+          type: integer
+        averageMatchScore:
+          type: integer
+      required:
+        - totalStudents
+        - totalConnections
+        - campusesConnected
+        - dailyNewConnections
+        - averageMatchScore
+
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        university:
+          type: string
+        major:
+          type: string
+        year:
+          type: string
+        bio:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        avatarInitials:
+          type: string
+        connections:
+          type: integer
+        openToCollaborate:
+          type: boolean
+      required:
+        - id
+        - name
+        - university
+        - major
+        - year
+        - bio
+        - skills
+        - avatarInitials
+        - connections
+        - openToCollaborate
+
+    Placement:
+      type: object
+      properties:
+        id:
+          type: integer
+        studentName:
+          type: string
+        university:
+          type: string
+        company:
+          type: string
+        role:
+          type: string
+        package:
+          type: string
+        type:
+          type: string
+          enum: [fulltime, internship]
+        month:
+          type: string
+        avatarInitials:
+          type: string
+        isVerified:
+          type: boolean
+      required:
+        - id
+        - studentName
+        - university
+        - company
+        - role
+        - package
+        - type
+        - month
+        - avatarInitials
+        - isVerified
+
+    PlacementStats:
+      type: object
+      properties:
+        totalPlacements:
+          type: integer
+        averagePackage:
+          type: string
+        topCompanies:
+          type: array
+          items:
+            type: string
+        internships:
+          type: integer
+        fulltimeOffers:
+          type: integer
+        highestPackage:
+          type: string
+      required:
+        - totalPlacements
+        - averagePackage
+        - topCompanies
+        - internships
+        - fulltimeOffers
+        - highestPackage
+
+    FeedPost:
+      type: object
+      properties:
+        id:
+          type: integer
+        authorName:
+          type: string
+        authorUniversity:
+          type: string
+        authorMajor:
+          type: string
+        avatarInitials:
+          type: string
+        content:
+          type: string
+        likes:
+          type: integer
+        comments:
+          type: integer
+        timeAgo:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - authorName
+        - authorUniversity
+        - authorMajor
+        - avatarInitials
+        - content
+        - likes
+        - comments
+        - timeAgo
+        - tags
+
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        organizer:
+          type: string
+        date:
+          type: string
+        time:
+          type: string
+        location:
+          type: string
+        attendees:
+          type: integer
+        category:
+          type: string
+        description:
+          type: string
+      required:
+        - id
+        - title
+        - organizer
+        - date
+        - time
+        - location
+        - attendees
+        - category
+        - description
+
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        authorName:
+          type: string
+        university:
+          type: string
+        techStack:
+          type: array
+          items:
+            type: string
+        rolesNeeded:
+          type: array
+          items:
+            type: string
+        teamSize:
+          type: integer
+        currentMembers:
+          type: integer
+        status:
+          type: string
+          enum: [open, closed, in-progress]
+      required:
+        - id
+        - title
+        - description
+        - authorName
+        - university
+        - techStack
+        - rolesNeeded
+        - teamSize
+        - currentMembers
+        - status

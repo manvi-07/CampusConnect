@@ -1,0 +1,148 @@
+Build a multi-page website for "CampusConnect" — an AI-powered student networking and collaboration platform.
+
+Tech stack: React + Vite + TypeScript + Tailwind CSS v4 + React Router.
+
+Design style: Pure black background across all pages, cinematic, futuristic, premium, minimal. Should feel like a real startup product (Apple x Notion x Gen-Z campus vibe).
+
+---
+
+🌐 ROUTING STRUCTURE
+
+Use React Router and create these pages:
+
+* "/" → Home
+* "/features" → Features page
+* "/how-it-works" → How It Works
+* "/feed" → Campus Feed Preview (IMPORTANT)
+* "/about" → About / Vision
+* "/join" → Get Started
+
+Navbar should be consistent across all pages.
+
+---
+
+🎨 DESIGN SYSTEM (KEEP EXACT)
+
+Fonts:
+* Instrument Serif (italic) → headings
+* Barlow → body
+
+Theme:
+* Black background everywhere
+* White text
+* Glassmorphism (liquid glass effect)
+* Smooth animations (Framer Motion)
+
+---
+
+🚀 HOME PAGE (Hero)
+
+Heading:
+"Your Campus, Connected."
+
+Subtext:
+"Find people, projects, events, and opportunities — all in one place."
+
+Buttons:
+* Get Started
+* Explore Platform
+
+---
+
+🌍 FEATURES PAGE
+
+Show 4–6 product features:
+
+* Smart Networking
+* Events Hub
+* Project Collaboration
+* Opportunity Feed
+* AI Recommendations
+
+Each with cards, icons, hover animations.
+
+---
+
+⚙️ HOW IT WORKS PAGE
+
+Steps UI:
+
+1. Join your campus
+2. Create your profile
+3. Discover people & events
+4. Collaborate and grow
+
+Make it visually interactive.
+
+---
+
+🔥 CAMPUS FEED PAGE (MOST IMPORTANT)
+
+Design this like a real app preview:
+
+Include:
+* Student posts
+* Event cards
+* Project listings
+* Profiles
+
+Make it look like:
+👉 A mix of LinkedIn + Instagram feed
+👉 Clean, modern, scrollable UI
+
+This page should feel like a real product demo.
+
+---
+
+🧠 ABOUT PAGE
+
+Content:
+* Problem: students lack connection/opportunities
+* Vision: unified campus ecosystem
+* Mission: empower collaboration
+
+Keep it minimal but powerful.
+
+---
+
+🚀 JOIN PAGE
+
+CTA-focused:
+
+Heading:
+"Be part of the future of campus."
+
+Buttons:
+* Join Now
+* Request Early Access
+
+---
+
+🧾 FOOTER
+
+"© 2026 CampusConnect. Built for students."
+
+Links:
+* About
+* Contact
+* Privacy
+
+---
+
+⚡ IMPORTANT RULES
+
+* Keep UI premium and modern
+* Do NOT make it look like a template
+* Use smooth animations
+* Use reusable components
+* Maintain consistent spacing and typography
+
+---
+
+🎯 FINAL GOAL
+
+This should look like:
+A real startup product website ready for launch — not a demo.
+
+Users should feel:
+"I want to use this right now."
