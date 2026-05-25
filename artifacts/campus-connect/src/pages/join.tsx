@@ -5,63 +5,21 @@ import { useNavigate } from "react-router-dom";
 
 export default function Join() {
 
-const navigate=
-useNavigate();
+const navigate = useNavigate();
+
+const [email, setEmail] = useState("");
+const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState("");
 
 
 
-const[
-email,
-setEmail
-]
-
-=
-
-useState("");
-
-
-
-const[
-loading,
-setLoading
-]
-
-=
-
-useState(false);
-
-
-
-const[
-message,
-setMessage
-]
-
-=
-
-useState("");
-
-
-
-
-
-
-const handleSubmit=
-async()=>{
+const handleSubmit = async () => {
 
 setLoading(true);
-
 setMessage("");
 
 
-
-if(
-
-!email.endsWith(
-"@gniindia.org"
-)
-
-){
+if(!email.endsWith("@gniindia.org")){
 
 setMessage(
 "❌ Please use your university email"
@@ -75,117 +33,17 @@ return;
 
 
 
-
-try{
-
-
-const res=
-
-await fetch(
-
-"/api/waitlist",
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":
-"application/json"
-
-},
-
-body:
-
-JSON.stringify({
-
-email
-
-})
-
-}
-
-);
-
-
-
-
-const data=
-await res.json();
-
-
-
-if(
-
-!res.ok
-
-){
-
-throw new Error(
-
-data.error
-
-||
-
-"Something went wrong"
-
-);
-
-}
-
-
-
-
-setMessage(
-
-"✅ Verified — redirecting..."
-
-);
-
-
-
-
 setTimeout(()=>{
 
-navigate(
-"/feed"
-);
-
-},1500);
-
-
-
-
-setEmail("");
-
-}
-
-
-
-catch(err:any){
-
 setMessage(
-
-"❌ "
-
-+
-
-err.message
-
+"✅ Verified — redirecting..."
 );
 
-}
-
-
-
-finally{
+navigate("/feed");
 
 setLoading(false);
 
-}
-
-
+},1500);
 
 };
 
@@ -193,13 +51,9 @@ setLoading(false);
 
 
 
-
-
-
 return(
 
-<div
-className="
+<div className="
 w-full
 min-h-screen
 flex
@@ -209,14 +63,9 @@ px-6
 relative
 overflow-hidden
 bg-background
-"
->
+">
 
-
-
-
-<div
-className="
+<div className="
 absolute
 top-1/2
 left-1/2
@@ -228,12 +77,7 @@ bg-primary/20
 blur-[150px]
 rounded-full
 pointer-events-none
-"
-/>
-
-
-
-
+"/>
 
 
 
@@ -272,36 +116,27 @@ shadow-2xl
 
 
 
-
-
-<h1
-className="
+<h1 className="
 text-5xl
 md:text-6xl
 font-serif
 italic
 mb-6
-"
->
+">
 
-Join your campus
-network.
+Join your campus network.
 
 </h1>
 
 
 
 
-
-
-<p
-className="
+<p className="
 text-lg
 text-white/60
 mb-10
 font-light
-"
->
+">
 
 Access students,
 projects,
@@ -309,10 +144,6 @@ events and opportunities
 inside your university.
 
 </p>
-
-
-
-
 
 
 
@@ -337,31 +168,18 @@ handleSubmit();
 
 
 
+<div className="space-y-2">
 
-
-<div
-className="
-space-y-2
-"
->
-
-
-
-<label
-className="
+<label className="
 text-sm
 font-medium
 text-white/80
 px-1
-"
->
+">
 
 University Email
 
 </label>
-
-
-
 
 
 
@@ -372,9 +190,11 @@ type="email"
 value={email}
 
 onChange={(e)=>
+
 setEmail(
 e.target.value
 )
+
 }
 
 placeholder="
@@ -399,12 +219,7 @@ transition-all
 "
 />
 
-
-
 </div>
-
-
-
 
 
 
@@ -426,6 +241,7 @@ hover:bg-white/90
 text-lg
 font-medium
 "
+
 >
 
 {
@@ -443,9 +259,6 @@ loading
 }
 
 </Button>
-
-
-
 
 
 
@@ -483,13 +296,7 @@ Request Early Access
 </Button>
 
 
-
 </form>
-
-
-
-
-
 
 
 
@@ -500,13 +307,11 @@ message
 
 &&
 
-<p
-className="
+<p className="
 text-sm
 mt-4
 text-center
-"
->
+">
 
 {message}
 
@@ -517,33 +322,29 @@ text-center
 
 
 
-
-
-
-
-<div
-className="
+<div className="
 flex
 justify-center
 gap-6
 text-xs
 text-white/40
 mt-6
-"
->
-
+">
 
 
 <button
 
 onClick={()=>
+
 navigate("/story")
+
 }
 
 className="
 hover:text-white
 transition
 "
+
 >
 
 Terms
@@ -552,18 +353,19 @@ Terms
 
 
 
-
-
 <button
 
 onClick={()=>
+
 navigate("/story")
+
 }
 
 className="
 hover:text-white
 transition
 "
+
 >
 
 Privacy
@@ -571,19 +373,13 @@ Privacy
 </button>
 
 
-
 </div>
-
-
-
 
 
 </motion.div>
 
-
-
 </div>
 
-)
+);
 
 }
